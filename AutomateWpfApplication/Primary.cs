@@ -1,18 +1,24 @@
-﻿using System.Diagnostics;
+﻿using AutomateWpfApplication.Classes;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Automation;
 using System.Xml;
 
 namespace AutomateWpfApplication
 { 
-    class Program
+    public class Program
     {
+        /*
         private static bool isFirstText = true;
         private static string previousUIElement = "";
         private static bool isFirstWindow = true;
         private static bool isFirstButton = true;
+        */
         static void Main(string[] args)
         {
+
+            XMLGenerator.GenerateXML("DesktopApplication");
+            /*
             // Specify the process name of the application you want to target
             string processName = "DesktopApplication";
             
@@ -274,6 +280,7 @@ namespace AutomateWpfApplication
                 Console.WriteLine("Error beautifying XML: " + ex.Message);
                 return xml; // Return the original XML if an error occurs
             }
+            */
         }
     }
 
