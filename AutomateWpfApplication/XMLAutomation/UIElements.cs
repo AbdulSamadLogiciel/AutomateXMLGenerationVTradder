@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Automation;
+﻿using System.Windows.Automation;
 
 namespace AutomateWpfApplication.Classes
 {
@@ -15,7 +10,23 @@ namespace AutomateWpfApplication.Classes
         
         }
 
-        public static AutomationElement GetPreviousSiblingElement(AutomationElement element)
+
+        public static bool IsPreviousAndCurrentElementSame(AutomationElement element)
+        {
+            var previousUIElement = GetPreviousSiblingElement(element)?.Current.ControlType.LocalizedControlType ?? "";
+            return previousUIElement == element.Current.ControlType.LocalizedControlType;
+        }
+        public static bool IsPreviousSiblingElementExists(AutomationElement element)
+        {
+            var previousElement = GetPreviousSiblingElement(element);
+            if(previousElement == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static AutomationElement? GetPreviousSiblingElement(AutomationElement element)
         {
             // Get the parent element
             AutomationElement parentElement = TreeWalker.ControlViewWalker.GetParent(element);
@@ -46,7 +57,17 @@ namespace AutomateWpfApplication.Classes
             return null;
         }
 
-        public static AutomationElement GetNextSiblingElement(AutomationElement element)
+        public static bool ISNextSiblingElementExists(AutomationElement element)
+        {
+            var nextElement = GetNextSiblingElement(element);
+            if(nextElement == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static AutomationElement? GetNextSiblingElement(AutomationElement element)
         {
 
             // Get the parent element

@@ -1,6 +1,8 @@
 ﻿using AutomateWpfApplication.XMLAutomation.Strategies;
 using AutomateWpfApplication.XMLAutomation.Strategies.Interfaces;
+using System.Data.SqlTypes;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Windows.Automation;
 using System.Xml;
@@ -14,46 +16,52 @@ namespace AutomateWpfApplication.Classes
         private static bool isFirstWindow = true;
         private static bool isFirstButton = true;
      
-        
 
+        public static void SaveXML(StringBuilder xmlString)
+        {
+            string beautifiedXml = BeautifyXml(xmlString.ToString());
+            string filePath = "C:\\Users\\abdul.samad\\source\\repos\\AutomateWpfApplication\\AutomateWpfApplication\\UIAutomation.xml";
+            File.WriteAllText(filePath, beautifiedXml);
+            Console.WriteLine("XML data has been written to the file successfully.");
+        }
         public static void GenerateXML(string applicationName)
         {
-
-            // Specify the process name of the application you want to target
-            string processName = applicationName;
-
-            // Find the main window of the specified application
-            AutomationElement mainWindow = FindMainWindow(processName);
-
-
-            StringBuilder xmlBuilder = new StringBuilder();
-            xmlBuilder.AppendLine("<EmbeddedControlBase>\n<SubControls>");
-            // Parse and print UI elements recursively
-            if (mainWindow != null)
+            try
             {
-                Console.WriteLine("UI Elements:");
-                ParseUIElements(mainWindow, 0, xmlBuilder);
+                
+                string processName = applicationName;
+
+                AutomationElement mainWindow = FindMainWindow(processName);
+                StringBuilder xmlBuilder = new StringBuilder();
+                xmlBuilder.AppendLine("<EmbeddedControlBase>\n<SubControls>");
+                // Parse and print UI elements recursively
+                if (mainWindow != null)
+                {
+                    Console.WriteLine("UI Elements:");
+                    ParseUIElements(mainWindow, 0, xmlBuilder);
+
+                    if (!isFirstWindow)
+                    {
+                        xmlBuilder.AppendLine("\r\n</SubControls>\r\n</WindowEmbeddedControl>");
+
+                    }
+                    xmlBuilder.AppendLine("</SubControls>\n</EmbeddedControlBase>");
+                    SaveXML(xmlBuilder);
+                    
+
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to find the main window of the '{processName}' application.");
+                }
             }
-            else
+            catch(Exception ex) 
             {
-                Console.WriteLine($"Failed to find the main window of the '{processName}' application.");
-            }
-            if (!isFirstWindow)
-            {
-                xmlBuilder.AppendLine("\r\n</SubControls>\r\n</WindowEmbeddedControl>");
-
+                Console.WriteLine($"Something went wrong: ${ex.Message}");
             }
 
 
-            xmlBuilder.AppendLine("</SubControls>\n</EmbeddedControlBase>");
-
-
-            string xmlString = xmlBuilder.ToString();
-            string beautifiedXml = BeautifyXml(xmlString.ToString());
-
-            // Print the beautified XML
-            Console.WriteLine(beautifiedXml);
-            // Console.WriteLine(xmlString);
+               
 
         }
 
@@ -67,10 +75,7 @@ namespace AutomateWpfApplication.Classes
                 AutomationElement mainWindow = AutomationElement.FromHandle(mainWindowHandle);
                 return mainWindow;
             }
-            else
-            {
-                return null;
-            }
+            throw new Exception("Application Not found");
         }
 
         static void ParseUIElements(AutomationElement element, int depth, StringBuilder xmlBuilder)
@@ -99,32 +104,33 @@ namespace AutomateWpfApplication.Classes
         static void GenerateXML(AutomationElement element,  StringBuilder xmlBuilder)
         {
 
-            var previousUIElement = UIElements.GetPreviousSiblingElement(element)?.Current.ControlType.LocalizedControlType ?? "";
-            if (previousUIElement != element.Current.ControlType.LocalizedControlType && (element.Current.ControlType.LocalizedControlType == "button"))
+           
+
+            if (!UIElements.IsPreviousAndCurrentElementSame(element) && ButtonStrategy.IsButton(element))
             {
                 isFirstButton = true;
             }
             
-            // Revive the state for text fields 
-            if (previousUIElement != element.Current.ControlType.LocalizedControlType && (element.Current.ControlType.LocalizedControlType == "edit"))
+        
+            if (!UIElements.IsPreviousAndCurrentElementSame(element) && TextFieldStrategy.IsText(element))
             {
-                isFirstText = true;  // setting the default value for other texts             
+                isFirstText = true;              
             }
 
-            if (element.Current.ControlType.LocalizedControlType == "window")
+            if (WindowStrategy.IsWindow(element))
             {
                 IXMLGenerationStrategy strategy = new WindowStrategy();
-                strategy.StrategicXMLGeneration(element, ref xmlBuilder, ref isFirstWindow);
+                strategy.StrategicXMLGeneration(element,  xmlBuilder, ref isFirstWindow);
             }
-            if(element.Current.ControlType.LocalizedControlType == "button")
+            if(ButtonStrategy.IsButton(element))
             {
                 IXMLGenerationStrategy strategy = new ButtonStrategy();
-                strategy.StrategicXMLGeneration(element, ref xmlBuilder, ref isFirstButton);
+                strategy.StrategicXMLGeneration(element,  xmlBuilder, ref isFirstButton);
             }
-            else if (element.Current.ControlType.LocalizedControlType == "edit")
+            else if (TextFieldStrategy.IsText(element))
             {
                 IXMLGenerationStrategy strategy = new TextFieldStrategy();
-                strategy.StrategicXMLGeneration(element, ref xmlBuilder, ref isFirstText);
+                strategy.StrategicXMLGeneration(element,  xmlBuilder, ref isFirstText);
             }
         }
 

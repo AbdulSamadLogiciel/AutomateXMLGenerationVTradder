@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-16"?>
+<EmbeddedControlBase>
+  <SubControls>
+    <WindowEmbeddedControl Key="Login" Name="Login">
+      <SubControls>
+        <ButtonEmbeddedControlBase Key="MainButtons" Name="Right">
+          <SubControls>
+            <ButtonEmbeddedControl Key="Login" Name="Login">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Login" Name="Login">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Login" Name="Login">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+          </SubControls>
+        </ButtonEmbeddedControlBase>
+        <FieldsEmbeddedControlBase Key="Fields" AutomationID="LayoutControl">
+          <SubControls>
+            <TextEditEmbeddedControl Key="User" ControlType="Edit">
+              <listOfElementHopper>
+                <ElementHopper AutomationID="User" />
+              </listOfElementHopper>
+            </TextEditEmbeddedControl>
+            <TextEditEmbeddedControl Key="User" ControlType="Edit">
+              <listOfElementHopper>
+                <ElementHopper AutomationID="User" />
+              </listOfElementHopper>
+            </TextEditEmbeddedControl>
+            <TextEditEmbeddedControl Key="User" ControlType="Edit">
+              <listOfElementHopper>
+                <ElementHopper AutomationID="User" />
+              </listOfElementHopper>
+            </TextEditEmbeddedControl>
+          </SubControls>
+        </FieldsEmbeddedControlBase>
+        <ButtonEmbeddedControlBase Key="MainButtons" Name="Right">
+          <SubControls>
+            <ButtonEmbeddedControl Key="Login" Name="Login">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+          </SubControls>
+        </ButtonEmbeddedControlBase>
+      </SubControls>
+    </WindowEmbeddedControl>
+  </SubControls>
+</EmbeddedControlBase>

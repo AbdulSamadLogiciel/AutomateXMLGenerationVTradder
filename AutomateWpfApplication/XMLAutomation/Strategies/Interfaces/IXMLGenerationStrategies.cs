@@ -10,7 +10,7 @@ namespace AutomateWpfApplication.XMLAutomation.Strategies.Interfaces
     public interface IXMLGenerationStrategy
     {
 
-        public void StrategicXMLGeneration( AutomationElement element, ref StringBuilder xmlBuilder , ref bool isFirst);
+        public void StrategicXMLGeneration( AutomationElement element,  StringBuilder xmlBuilder , ref bool isFirst);
 
     }
 }
