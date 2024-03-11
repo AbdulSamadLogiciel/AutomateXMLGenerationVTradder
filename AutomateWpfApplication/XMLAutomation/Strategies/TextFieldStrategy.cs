@@ -14,29 +14,30 @@ namespace AutomateWpfApplication.XMLAutomation.Strategies
         }
         public void StrategicXMLGeneration(AutomationElement element, StringBuilder xmlBuilder, ref bool isFirstText)
         {
-          
-             if (IsText(element) && isFirstText && !UIElements.ISNextSiblingElementExists(element))
+            var defaultValue = (element.Current.Name != "" ? element.Current.Name : element.Current.AutomationId != "" ? element.Current.AutomationId : element.Current.ControlType != null ? element.Current.ControlType.ToString() : "");
+
+            if (IsText(element) && isFirstText && !UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<FieldsEmbeddedControlBase Key=\"Fields\" AutomationID=\"LayoutControl\">\r\n<SubControls>\r\n<TextEditEmbeddedControl Key=\"User\" ControlType=\"Edit\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<FieldsEmbeddedControlBase Key=\"{defaultValue}\" AutomationID=\"{defaultValue}\">\r\n<SubControls>\r\n<TextEditEmbeddedControl Key=\"{defaultValue}\" ControlType=\"{defaultValue}\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
                 xmlBuilder.Append($"\r\n</SubControls>\r\n</FieldsEmbeddedControlBase>");
                 isFirstText = false;
 
             }
             else if (IsText(element) && isFirstText && UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<FieldsEmbeddedControlBase Key=\"Fields\" AutomationID=\"LayoutControl\">\r\n<SubControls>\r\n<TextEditEmbeddedControl Key=\"User\" ControlType=\"Edit\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<FieldsEmbeddedControlBase Key=\"{defaultValue}\" AutomationID=\"{defaultValue}\">\r\n<SubControls>\r\n<TextEditEmbeddedControl Key=\"{defaultValue}\" ControlType=\"{defaultValue}\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
                 isFirstText = false;
 
             }
             else if (IsText(element) && !isFirstText && UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<TextEditEmbeddedControl Key=\"User\" ControlType=\"Edit\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<TextEditEmbeddedControl Key=\"{defaultValue}\" ControlType=\"{defaultValue}\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
 
             }
 
             else if (IsText(element) && !isFirstText && !UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<TextEditEmbeddedControl Key=\"User\" ControlType=\"Edit\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<TextEditEmbeddedControl Key=\"{defaultValue}\" ControlType=\"{defaultValue}\">\r\n<listOfElementHopper>\r\n<ElementHopper AutomationID=\"User\"/>\r\n</listOfElementHopper>\r\n</TextEditEmbeddedControl>");
                 xmlBuilder.Append($"\r\n</SubControls>\r\n</FieldsEmbeddedControlBase>");
 
             }

@@ -1,49 +1,106 @@
 <?xml version="1.0" encoding="utf-16"?>
 <EmbeddedControlBase>
   <SubControls>
-    <WindowEmbeddedControl Key="Login" Name="Login">
+    <WindowEmbeddedControl Key="ApplicationToolBar" Name="ApplicationToolBar">
       <SubControls>
-        <ButtonEmbeddedControlBase Key="MainButtons" Name="Right">
+        <ButtonEmbeddedControlBase Key="Minimize" Name="Minimize">
           <SubControls>
-            <ButtonEmbeddedControl Key="Login" Name="Login">
+            <ButtonEmbeddedControl Key="Minimize" Name="Minimize">
               <ExtraInfo>
                 <Info Key="ActionType" Value="Click" />
               </ExtraInfo>
             </ButtonEmbeddedControl>
-            <ButtonEmbeddedControl Key="Login" Name="Login">
+            <ButtonEmbeddedControl Key="Restore" Name="Restore">
               <ExtraInfo>
                 <Info Key="ActionType" Value="Click" />
               </ExtraInfo>
             </ButtonEmbeddedControl>
-            <ButtonEmbeddedControl Key="Login" Name="Login">
+            <ButtonEmbeddedControl Key="Close" Name="Close">
               <ExtraInfo>
                 <Info Key="ActionType" Value="Click" />
               </ExtraInfo>
             </ButtonEmbeddedControl>
           </SubControls>
         </ButtonEmbeddedControlBase>
-        <FieldsEmbeddedControlBase Key="Fields" AutomationID="LayoutControl">
+        <ButtonEmbeddedControlBase Key="Level II" Name="Level II">
           <SubControls>
-            <TextEditEmbeddedControl Key="User" ControlType="Edit">
-              <listOfElementHopper>
-                <ElementHopper AutomationID="User" />
-              </listOfElementHopper>
-            </TextEditEmbeddedControl>
-            <TextEditEmbeddedControl Key="User" ControlType="Edit">
-              <listOfElementHopper>
-                <ElementHopper AutomationID="User" />
-              </listOfElementHopper>
-            </TextEditEmbeddedControl>
-            <TextEditEmbeddedControl Key="User" ControlType="Edit">
-              <listOfElementHopper>
-                <ElementHopper AutomationID="User" />
-              </listOfElementHopper>
-            </TextEditEmbeddedControl>
+            <ButtonEmbeddedControl Key="Level II" Name="Level II">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
           </SubControls>
-        </FieldsEmbeddedControlBase>
-        <ButtonEmbeddedControlBase Key="MainButtons" Name="Right">
+        </ButtonEmbeddedControlBase>
+        <ButtonEmbeddedControlBase Key="Agreements" Name="Agreements">
           <SubControls>
-            <ButtonEmbeddedControl Key="Login" Name="Login">
+            <ButtonEmbeddedControl Key="Agreements" Name="Agreements">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Fee And Commission" Name="Fee And Commission">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+          </SubControls>
+        </ButtonEmbeddedControlBase>
+        <ButtonEmbeddedControlBase Key="Position Audit Trail" Name="Position Audit Trail">
+          <SubControls>
+            <ButtonEmbeddedControl Key="Position Audit Trail" Name="Position Audit Trail">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Buying Power" Name="Buying Power">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Charts" Name="Charts">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Locate" Name="Locate">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Chat" Name="Chat">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Admin Panel" Name="Admin Panel">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Time Series" Name="Time Series">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+          </SubControls>
+        </ButtonEmbeddedControlBase>
+        <ButtonEmbeddedControlBase Key="Clock" Name="Clock">
+          <SubControls>
+            <ButtonEmbeddedControl Key="Clock" Name="Clock">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+            <ButtonEmbeddedControl Key="Settings" Name="Settings">
+              <ExtraInfo>
+                <Info Key="ActionType" Value="Click" />
+              </ExtraInfo>
+            </ButtonEmbeddedControl>
+          </SubControls>
+        </ButtonEmbeddedControlBase>
+        <ButtonEmbeddedControlBase Key="About" Name="About">
+          <SubControls>
+            <ButtonEmbeddedControl Key="About" Name="About">
               <ExtraInfo>
                 <Info Key="ActionType" Value="Click" />
               </ExtraInfo>

@@ -15,29 +15,30 @@ namespace AutomateWpfApplication.XMLAutomation.Strategies
         }
         public void StrategicXMLGeneration(AutomationElement element,  StringBuilder xmlBuilder, ref bool isFirstButton)
         {
-          
-             if (IsButton(element)  && isFirstButton && !UIElements.ISNextSiblingElementExists(element))
+            var defaultValue = (element.Current.Name != "" ? element.Current.Name : element.Current.AutomationId != "" ? element.Current.AutomationId : element.Current.ControlType != null ? element.Current.ControlType.ToString() : "");
+
+            if (IsButton(element)  && isFirstButton && !UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<ButtonEmbeddedControlBase Key=\"MainButtons\" Name=\"Right\">\r\n<SubControls>\r\n<ButtonEmbeddedControl Key=\"Login\" Name=\"Login\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<ButtonEmbeddedControlBase Key=\"{defaultValue}\" Name=\"{defaultValue}\">\r\n<SubControls>\r\n<ButtonEmbeddedControl Key=\"{defaultValue}\" Name=\"{defaultValue}\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
                 xmlBuilder.Append($"\r\n</SubControls>\r\n</ButtonEmbeddedControlBase>");
                 isFirstButton = false;
 
             }
             else if (IsButton(element) && isFirstButton && UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<ButtonEmbeddedControlBase Key=\"MainButtons\" Name=\"Right\">\r\n<SubControls>\r\n<ButtonEmbeddedControl Key=\"Login\" Name=\"Login\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<ButtonEmbeddedControlBase Key=\"{defaultValue}\" Name=\"{defaultValue}\">\r\n<SubControls>\r\n<ButtonEmbeddedControl Key=\"{defaultValue}\" Name=\"{defaultValue}\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
                 isFirstButton = false;
 
             }
             else if (IsButton(element) && !isFirstButton && UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<ButtonEmbeddedControl Key=\"Login\" Name=\"Login\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<ButtonEmbeddedControl Key=\"{defaultValue}\" Name=\"{defaultValue}\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
 
             }
 
             else if (IsButton(element) && !isFirstButton && !UIElements.ISNextSiblingElementExists(element))
             {
-                xmlBuilder.Append($"\r\n<ButtonEmbeddedControl Key=\"Login\" Name=\"Login\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
+                xmlBuilder.Append($"\r\n<ButtonEmbeddedControl Key=\"{defaultValue}\" Name=\"{defaultValue}\">\r\n<ExtraInfo>\r\n<Info Key=\"ActionType\" Value=\"Click\"/>\r\n</ExtraInfo>\r\n</ButtonEmbeddedControl>");
                 xmlBuilder.Append($"\r\n</SubControls>\r\n</ButtonEmbeddedControlBase>");
 
             }
