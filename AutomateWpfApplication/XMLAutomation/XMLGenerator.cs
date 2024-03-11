@@ -1,6 +1,5 @@
 ﻿using AutomateWpfApplication.XMLAutomation.Strategies;
 using AutomateWpfApplication.XMLAutomation.Strategies.Interfaces;
-using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -34,9 +33,7 @@ namespace AutomateWpfApplication.Classes
                 AutomationElement mainWindow = FindMainWindow(processName);
                 StringBuilder xmlBuilder = new StringBuilder();
                 xmlBuilder.AppendLine("<EmbeddedControlBase>\n<SubControls>");
-                // Parse and print UI elements recursively
-                if (mainWindow != null)
-                {
+            
                     Console.WriteLine("UI Elements:");
                     ParseUIElements(mainWindow, 0, xmlBuilder);
 
@@ -48,12 +45,6 @@ namespace AutomateWpfApplication.Classes
                     xmlBuilder.AppendLine("</SubControls>\n</EmbeddedControlBase>");
                     SaveXML(xmlBuilder);
                     
-
-                }
-                else
-                {
-                    Console.WriteLine($"Failed to find the main window of the '{processName}' application.");
-                }
             }
             catch(Exception ex) 
             {
@@ -67,7 +58,7 @@ namespace AutomateWpfApplication.Classes
 
         static AutomationElement FindMainWindow(string processName)
         {
-            // Find the main window of the specified application by its process name
+            
             Process[] processes = Process.GetProcessesByName(processName);
             if (processes.Length > 0)
             {
@@ -75,12 +66,12 @@ namespace AutomateWpfApplication.Classes
                 AutomationElement mainWindow = AutomationElement.FromHandle(mainWindowHandle);
                 return mainWindow;
             }
-            throw new Exception("Application Not found");
+            throw new Exception("Target Application Not found");
         }
 
         static void ParseUIElements(AutomationElement element, int depth, StringBuilder xmlBuilder)
         {
-            // Print the current element's details
+            
             PrintElementDetails(element, depth, xmlBuilder);
 
             // Get the children of the current element
@@ -138,11 +129,11 @@ namespace AutomateWpfApplication.Classes
         {
             try
             {
-                // Load the XML string into an XmlDocument
+                
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(xml);
 
-                // Create a string writer to store the formatted XML
+                
                 StringBuilder stringBuilder = new StringBuilder();
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
@@ -159,9 +150,9 @@ namespace AutomateWpfApplication.Classes
             }
             catch (Exception ex)
             {
-                // Handle any exceptions (e.g., invalid XML format)
+              
                 Console.WriteLine("Error beautifying XML: " + ex.Message);
-                return xml; // Return the original XML if an error occurs
+                return xml; 
             }
         }
 
