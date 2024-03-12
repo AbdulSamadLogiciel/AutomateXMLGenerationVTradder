@@ -19,7 +19,9 @@ namespace AutomateWpfApplication.Classes
         public static void SaveXML(StringBuilder xmlString)
         {
             string beautifiedXml = BeautifyXml(xmlString.ToString());
-            string filePath = "C:\\Users\\abdul.samad\\source\\repos\\AutomateWpfApplication\\AutomateWpfApplication\\UIAutomation.xml";
+            var baseDirectory = Directory.GetCurrentDirectory();
+            string relativePath = @"..\..\..\UIAutomation.xml";
+            string filePath = Path.Combine(baseDirectory, relativePath);
             File.WriteAllText(filePath, beautifiedXml);
             Console.WriteLine("XML data has been written to the file successfully.");
         }

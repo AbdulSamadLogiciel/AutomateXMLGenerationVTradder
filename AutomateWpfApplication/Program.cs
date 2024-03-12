@@ -9,7 +9,7 @@ namespace AutomateWpfApplication
         public static void Main(string[] args)
         {
 
-            XMLGenerator.GenerateXML("Client");
+            XMLGenerator.GenerateXML("DesktopApplication");
      
         }
     }
